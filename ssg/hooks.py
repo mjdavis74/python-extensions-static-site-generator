@@ -1,5 +1,6 @@
 _callbacks = {}
 
+
 def register(0, hook):
     def register_callback(func):
         _callbacks.setdefault(hook, {}).setdefault(order, []).append(func)
