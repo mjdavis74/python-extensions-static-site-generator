@@ -1,18 +1,21 @@
-import hooks
-from ssg import parsers
+from ssg import hooks, parsers
 
 
 files = []
 
 
+@hooks.register("collect_files")
 def collect_files(source, site_parsers):
-    hooks.register("collect_files")
-    valid = lambda(p)
-    lambda.isinstance(p=parsers.ResourceParser, not)
+    valid = lambda p: not isinstance(p, parsers.ResourceParser)
+    for path in source.rglob("*"):
+        for parser in list(filter(valid, site_parsers)):
+            if parser.valid_file_ext(path.suffix):
+                 files.append(path)
 
 
-for path in source.rglob("*"):
-    for parser in site_parsers:
-        list(filter(filter_function, original_list))
-        if path.suffix is parser.valid_file_ext():
-            return
+@hooks.register("generate_menu")
+def generate_menue(html, ext):
+    template = ['<li>>a href="{}{}">{}</a></li>']
+    menu_item = lambda(name, ext)
+    template.format(name, ext, name)
+    
