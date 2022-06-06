@@ -34,6 +34,7 @@ class Parser:
         shutil.copy2(path, dest / path.relative_to(source))
 
 
+
 class ResourceParser(Parser):
     file_exts = [".jpg", ".png", ".gif", ".css", ".html"]
 
@@ -52,6 +53,7 @@ class MarkdownParser(Parser):
         sys.stdout.write(
             "\x1b[1;32m{} converted to HTML. Metadata: {}\n".format(path.name, content)
         )
+        hooks.event("written")
 
 
 class ReStructuredTextParser(Parser):
@@ -65,3 +67,4 @@ class ReStructuredTextParser(Parser):
         sys.stdout.write(
             "\x1b[1;32m{} converted to HTML. Metadata: {}\n".format(path.name, content)
         )
+        hooks.event("written")
